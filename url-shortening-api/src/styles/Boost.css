@@ -1,0 +1,14 @@
+.boost-section {
+    background-image: url("../images/bg-boost-mobile.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  @media (min-width: 768px) {
+    .boost-section {
+      background-image: url("../images/bg-boost-desktop.svg");
+    }
+  }
+  
