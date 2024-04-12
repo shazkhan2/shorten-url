@@ -1,12 +1,10 @@
+import Navbar from "./components/Navbar";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-     <h1>
-      More than just shorter links
-     </h1>
-    </div>
+     <>
+     <Navbar />
+     </>
   );
 }
 
-export default App;
