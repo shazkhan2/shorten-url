@@ -32,14 +32,6 @@ function Footer() {
         </ul>
       </article>
       <article>
-        <h3>Features</h3>
-        <ul>
-          <li>Link Shortening</li>
-          <li>Developers</li>
-          <li>Support</li>
-        </ul>
-      </article>
-      <article>
         <h3>Company</h3>
         <ul>
           <li>About</li>

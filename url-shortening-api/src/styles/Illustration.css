@@ -1,0 +1,36 @@
+.illustration-section {
+    display: flex;
+    padding: 2rem 1rem;
+    flex-direction: column-reverse;
+  }
+  
+  .illustration-section article {
+    width: 100%;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  
+  img {
+    width: 100%;
+  }
+  
+  @media screen and (min-width: 375px) {
+    .illustration-section {
+      flex-direction: row;
+    }
+  
+    .illustration-section article {
+      width: 50%;
+      text-align: left;
+    }
+  
+    img {
+      width: 50%;
+    }
+  }
+  
