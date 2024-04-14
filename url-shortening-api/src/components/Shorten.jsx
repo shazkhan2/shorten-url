@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import bgDesktop from "../images/bg-shorten-desktop.svg";
-import bgMobile from "../images/bg-shorten-mobile.svg";
+import React, { useState } from "react";
+import "../styles/Shorten.css";
 
 export default function Shorten() {
   const [text, setText] = useState("");
@@ -14,16 +13,20 @@ export default function Shorten() {
     }
 
     try {
-      const response = await fetch('https://cleanuri.com/api/v1/shorten', {
-        method: 'POST',
+      const formData = new URLSearchParams();
+      formData.append("url", text);
+
+      const response = await fetch("https://cleanuri.com/api/v1/shorten", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/x-www-form-urlencoded",
+          
         },
-        body: JSON.stringify({ url: text }),
+        body: formData.toString(),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to shorten URL');
+        throw new Error("Failed to shorten URL");
       }
 
       const data = await response.json();
@@ -38,25 +41,19 @@ export default function Shorten() {
   };
 
   return (
-    <>
-      <section>
-        <picture>
-          <source media='(min-width: 768px)' srcSet={bgDesktop} />
-          <img src={bgMobile} alt='Background' />
-        </picture> 
-
-        <form onSubmit={handleSubmit}>
-          <input 
-            type='text' 
-            placeholder='Shorten a link here...'
-            value={text}
-            onChange={handleChange}       
-          />
-          <button type='submit'>
-            Shorten it!
-          </button>
-        </form>
-      </section>
-    </>
+    <section className="shorten-container">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Shorten a link here..."
+          value={text}
+          onChange={handleChange}
+          className="shorten-input"
+        />
+        <button type="submit" className="shorten-button">
+          Shorten it!
+        </button>
+      </form>
+    </section>
   );
 }
