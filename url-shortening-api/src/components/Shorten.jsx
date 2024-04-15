@@ -6,32 +6,35 @@ export default function Shorten() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!text) {
       alert("Please enter a valid URL!");
       return;
     }
-
+  
     try {
-      const response = await fetch("https://cleanuri.com/api/v1/shorten", {
+      const formData = new URLSearchParams();
+      formData.append("url", text);
+  
+      const response = await fetch("http://localhost:3000/api/shorten", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({ url: text }),
+        body: formData.toString(),
       });
-
+  
       if (!response.ok) {
         throw new Error("Failed to shorten URL");
       }
-
+  
       const data = await response.json();
       console.log(data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
+  
   const handleChange = (e) => {
     setText(e.target.value);
   };
