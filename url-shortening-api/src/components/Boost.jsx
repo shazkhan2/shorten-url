@@ -1,5 +1,5 @@
 import React from 'react';
-import "../styles/Boost.css"; 
+import "./Boost.css"; 
 
 function Boost() {
   return (
