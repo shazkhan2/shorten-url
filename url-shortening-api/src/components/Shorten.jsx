@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Shorten.css";
+import "./Shorten.css";
 
 export default function Shorten() {
   const [text, setText] = useState("");
@@ -13,16 +13,12 @@ export default function Shorten() {
     }
 
     try {
-      const formData = new URLSearchParams();
-      formData.append("url", text);
-
       const response = await fetch("https://cleanuri.com/api/v1/shorten", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          
+          "Content-Type": "application/json",
         },
-        body: formData.toString(),
+        body: JSON.stringify({ url: text }),
       });
 
       if (!response.ok) {

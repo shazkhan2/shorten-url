@@ -1,6 +1,6 @@
 import React from "react";
 import illustrate from "../images/illustration-working.svg";
-import "../styles/Illustration.css";
+import "./Illustration.css";
 
 export default function Illustration() {
   return (

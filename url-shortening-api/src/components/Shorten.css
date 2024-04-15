@@ -1,0 +1,54 @@
+.shorten-container {
+  background-image: url(../images/bg-shorten-desktop.svg);
+  background-color: var(--DarkViolet);
+  padding: 3rem;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 80%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+.shorten-button {
+  background-color: var(--Cyan);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  text-wrap: nowrap;
+}
+.shorten-button:hover {
+  background-color: hsl(180, 58%, 71%);
+}
+
+@media screen and (max-width: 375px) {
+  .shorten-container {
+    background-image: url(../images/bg-shorten-mobile.svg);
+    padding: 2rem;
+  }
+
+  form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  input {
+    width: -webkit-fill-available;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  .shorten-button {
+    width: 100%;
+  }
+}

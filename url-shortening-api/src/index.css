@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
-
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap");
 
 :root {
   /* Primary */
@@ -22,14 +15,78 @@ body {
   --VeryDarkViolet: hsl(260, 8%, 14%);
 }
 
+body {
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1440px;
+  margin: 0 auto;
+  background-color: rgb(249, 244, 244);
+}
+
+/* Anchor styling */
+a,
+button {
+  text-decoration: none;
+  color: var(--GrayishViolet);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+a:hover {
+  color: var(--VeryDarkBlue);
+}
+
+/* Primarry button */
+
+.primary-button {
+  background-color: var(--Cyan);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.primary-button:hover {
+  background-color: hsl(180, 58%, 71%);
+}
+
 p {
   line-height: 1.6;
+  color: var(--GrayishViolet);
+  margin: 0.5rem 0;
 }
 
 img {
   max-width: 100%;
 }
 
-ul, li {
+ul,
+li {
   list-style-type: none;
+  padding: 0;
+}
+
+section {
+  padding: 2rem 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--VeryDarkBlue);
+  margin: 1rem 0;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--VeryDarkBlue);
+  margin: 1rem 0;
+}
+
+h4 {
+  font-size: 1.25rem;
+  color: var(--VeryDarkBlue);
+  margin: 1rem 0;
 }
