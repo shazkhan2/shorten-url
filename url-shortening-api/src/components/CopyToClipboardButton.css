@@ -1,7 +1,7 @@
 .url-info {
     background-color: white;
     display: flex;
-    justify-content: flex-start; /* Change to flex-start */
+    justify-content: flex-start; 
     align-items: center;
     width: 100%;
     padding: 0.5rem;
