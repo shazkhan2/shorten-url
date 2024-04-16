@@ -1,0 +1,65 @@
+.url-info {
+    background-color: white;
+    display: flex;
+    justify-content: flex-start; /* Change to flex-start */
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .copy-button {
+    margin-left: auto;
+    background-color: var(--Cyan);
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    text-wrap: nowrap;
+  }
+
+  .copy-button.copied {
+    background-color: var(--DarkViolet);
+  }
+  
+  
+  .copy-button:hover {
+    background-color: hsl(180, 58%, 71%);
+  }
+    .full-url {
+    color: black; 
+    flex: 1; 
+  margin-right: 10px;
+  }
+
+  .shortened-url {
+    color: var(--Cyan); 
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width: 375px) {
+    .url-info {
+      flex-direction: column;
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+  
+    .full-url {
+      margin-right: 0; 
+      margin-bottom: 0.5rem; 
+     }
+  
+    .shortened-url {
+      margin-right: 0; 
+    }
+    .copy-button {
+        margin-left: auto; 
+        margin-right: auto; 
+        display: block; 
+      }
+  }

@@ -3,8 +3,8 @@ import "./Shorten.css";
 import CopyToClipboardButton from "./CopyToClipboardButton";
 
 export default function Shorten() {
-  const [text, setText] = useState("");
-  const [shortenedUrls, setShortenedUrls] = useState([]);
+  const [fullUrl, setFullUrl] = useState("");
+  const [urlPairs, setUrlPairs] = useState([]);
 
   const handleCopySuccess = () => {
     console.log("URL copied successfully!"); 
@@ -13,12 +13,12 @@ export default function Shorten() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!text) {
+    if (!fullUrl) {
       alert("Please enter a valid URL!");
       return;
     }
 
-    let processedUrl = text.trim();
+    let processedUrl = fullUrl.trim();
     if (!processedUrl.startsWith("http://") && !processedUrl.startsWith("https://")) {
       processedUrl = "https://" + processedUrl;
     }
@@ -40,15 +40,15 @@ export default function Shorten() {
       }
 
       const data = await response.json();
-      setShortenedUrls([...shortenedUrls, data.shortenedUrl]);
-      setText(""); 
+      setUrlPairs([...urlPairs, { fullUrl, shortenedUrl: data.shortenedUrl }]);
+      setFullUrl(""); 
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
   const handleChange = (e) => {
-    setText(e.target.value);
+    setFullUrl(e.target.value);
   };
 
   return (
@@ -57,7 +57,7 @@ export default function Shorten() {
         <input
           type="text"
           placeholder="Shorten a link here..."
-          value={text}
+          value={fullUrl}
           onChange={handleChange}
           className="shorten-input"
         />
@@ -66,10 +66,13 @@ export default function Shorten() {
         </button>
       </form>
       <div className="shortened-urls">
-        {shortenedUrls.map((url, index) => (
+        {urlPairs.map((pair, index) => (
           <div key={index} className="shortened-url">
-            <p>{url}</p>
-            <CopyToClipboardButton fullUrl={text} shortenedUrl={url} onSuccess={handleCopySuccess} />
+            <CopyToClipboardButton
+              fullUrl={pair.fullUrl}
+              shortenedUrl={pair.shortenedUrl}
+              onSuccess={handleCopySuccess}
+            />
           </div>
         ))}
       </div>
