@@ -18,6 +18,17 @@ input {
   font-size: 1rem;
   margin-right: 1rem;
 }
+
+.alert-message {
+  color: rgb(217, 119, 119);
+  font-size: 0.8rem;
+
+}
+
+.red-border {
+  border: 2px solid red;
+}
+
 .shorten-button {
   background-color: var(--Cyan);
   color: white;
