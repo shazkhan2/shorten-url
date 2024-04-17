@@ -1,86 +1,100 @@
-import React, { useState } from 'react';
-import './Shorten.css';
-import CopyToClipboardButton from './CopyToClipboardButton';
+.statistics-container {
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+  .background-line {
+    display: none;
+  }
+  .statistics-header {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 4rem;
+  }
+  
+  .cards-container > article {
+    flex: 1;
+    position: relative;
+    height: fit-content;
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem 1rem 1rem 1rem;
+    margin-bottom: 6rem;
+    text-align: center;
+  }
+  
+  .mobile-background-line {
+    display: block;
+      position: absolute;
+      width: 3%;
+      height: 50%;
+      top: 50%;
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      z-index: -10;
+      background-color: var(--Cyan);
+  }
 
-const API_URL = 'http://localhost:3000/api/shorten';
-
-export default function Shorten() {
-  const [inputUrl, setInputUrl] = useState('');
-  const [urlPairs, setUrlPairs] = useState([]);
-  const [showAlert, setShowAlert] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!inputUrl) {
-      setShowAlert(true);
-      return;
+  .cards-container > article:last-child {
+    margin-right: 0;
+  }
+  
+  .cards-container > article > img {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    background-color: var(--DarkViolet);
+    padding: 1rem;
+    border-radius: 50%;
+  }
+  
+  @media screen and (min-width: 375px) {
+    .statistics-header {
+      width: 50%;
     }
-    setShowAlert(false);
-    setShowAlert(false);
-
-    let processedUrl = inputUrl.trim();
-    if (!processedUrl.startsWith('http://') && !processedUrl.startsWith('https://')) {
-      processedUrl = 'https://' + processedUrl;
+  
+    .cards-container {
+      flex-direction: row;
     }
-
-    try {
-      const formData = new URLSearchParams();
-      formData.append('url', processedUrl);
-
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: formData.toString(),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to shorten URL');
-      }
-
-      const data = await response.json();
-      setUrlPairs([...urlPairs, { inputUrl, shortenedUrl: data.shortenedUrl }]);
-      setInputUrl('');
-    } catch (error) {
-      console.error('Error:', error);
+  
+    .cards-container > article {
+      padding: 2rem;
+      margin-right: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
     }
-  };
-
-  const handleChange = (e) => {
-    setInputUrl(e.target.value);
-  };
-
-  return (
-    <>
-      <section className="form-container">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Shorten a link here..."
-            value={inputUrl}
-            onChange={handleChange}
-            className={`shorten-input ${showAlert ? 'red-border' : ''}`}
-          />
-          <button type="submit" className="shorten-button">
-            Shorten it!
-          </button>
-        </form>
-        {showAlert && <p className="alert-message">Please add a link</p>}
-      </section>
-      <section className="shortened-container">
-        <div className="shortened-urls">
-          {urlPairs.map((pair, index) => (
-            <div key={index} className="shortened-url">
-              <CopyToClipboardButton
-                inputUrl={pair.inputUrl}
-                shortenedUrl={pair.shortenedUrl}
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-    </>
-  );
-}
+  
+    .background-line {
+      display: block;
+      position: absolute;
+      width: 80%;
+      top: 70%;
+      z-index: -1;
+      background-color: var(--Cyan);
+    }
+    .mobile-background-line {
+      display: none;
+    }
+    .cards-container > article > img {
+      left: 20%;
+    }
+  
+  
+    .cards-container > article:nth-child(2) {
+      margin-top: 3rem;
+    }
+    .cards-container > article:nth-child(3) {
+      margin-top: 6rem;
+    }
+  }
+  
