@@ -10,6 +10,10 @@ export default function Statistics() {
       <svg width="100%" height="10" className="background-line">
         <line x1="0" y1="0" x2="100%" y2="0" stroke="hsl(180, 66%, 49%)" />
       </svg>
+      <svg width="10" height="100%" className="mobile-background-line">
+  <line x1="0" y1="0" x2="0" y2="100%" stroke="hsl(180, 66%, 49%)" />
+</svg>
+
       <div className="statistics-header">
         <h2>Advanced statistics</h2>
         <p>
