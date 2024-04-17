@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+![Large screen](image-2.png)
+![Mobile view]!(image-1.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lessons learned:
+1. Postman does not enforce Cors; Cors errors happen in browsers on the client side.
+2. Not all APIs are freely available. In case there are origin access controls, the workaround is to create a server that you can call, which in return will call the API.
+3. React and Node are constantly evolving so any unusual errors would require a good understanding and an optimal solution.
+4. There is a copy to clipboard library available in React.
 
-## Available Scripts
+Plan B:
+If I couldnt make the given API work by the weekend, I shall instead find one that doesnt have any CORS restrictions and it can be called directly from the front end. Its better to start with building a skating board first, then a bicycle then a car and then an aeroplane, rather than start straight with an aeroplance and a year later you have nothing to show. 
 
-In the project directory, you can run:
+Learning objectives for the future:
+1. Get comfortable with a design library, ideally Tailwind CSS.
+2. Get my code reviewed by a senior mentor to help me simplify it as much as possible.
+3. In unfamiliar situations, ask a mentor to show me a course of action early on rather than exhaust all the wrong options before I come to the right solution. 
+4. But nothing is more exciting than being stuck in a situation that you cant fathom how to get out of, only to then find a solution and feel elated. Keep coding, keep learning and I love what I do. 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The project became challenging upon getting the error that access from my origin- the localhost- was blocked by CORS policy.
+So the first step was to see if I can call the API via postman by following their documentation: https://cleanuri.com/docs . Their documentation is not great, and I had to ask chatGPT what the  -d url=https%3A%2F%2Fgoogle.com%2F' flag in the curl command got translated into. It turns out it becomes a url-encoded-form-body
+curl -XPOST -d 'url=https%3A%2F%2Fgoogle.com%2F' 'https://cleanuri.com/api/v1/shorten'. I created a postman request where it works as seen in the picture.
+![Postman](image-3.png)
+Now that it works from Postman it means it should work from any application as well if I call the API the same way. I was calling it by using a json body instead of the url-encoded-form-body. This I thought was most likely the cause of my issues, but it was far from it.
+The API I was trying to access does not support CORS, and that it would require a back-end to work. Some initial search led me to consider using a proxy server but that was no good. Then a wise man suggested that:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+"Take a few steps back, you shouldn't need more than:
+Your web app makes a request to your API server
+Your API server makes a request to the public API you're using to shorten URLs (using node-fetch or similar)
+Your API responds with the shorter URL."
 
-### `npm test`
+I then went on to create the backend but was getting other errors to do with the NPM packages. They did not support CommonJS which is an older package specification, which uses require. What I had was instead a new ES6 modules package, which uses import. I then gave me js files the extension .mjs to tell node that this file should use the es module syntax.  and bingo, I got data returned from the API 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
