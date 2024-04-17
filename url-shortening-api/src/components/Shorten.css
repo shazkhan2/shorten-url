@@ -1,7 +1,38 @@
-.shorten-container {
+.form-container {
   background-image: url(../images/bg-shorten-desktop.svg);
   background-color: var(--DarkViolet);
-  padding: 3rem;
+}
+.shortened-container {
+  margin-top: 0rem;
+  padding: 1rem;
+
+}
+
+.shorten-button {
+  background-color: var(--Cyan);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  text-wrap: nowrap;
+}
+.shorten-button:hover {
+  background-color: hsl(180, 58%, 71%);
+}
+
+.alert-message {
+  color: hsl(0, 87%, 67%);
+  font-size: 0.8rem;
+}
+
+.red-border {
+  border: 2px solid hsl(0, 87%, 67%);
+}
+
+.shortened-urls {
+  margin-top: 0.5rem;
 }
 
 form {
@@ -19,34 +50,12 @@ input {
   margin-right: 1rem;
 }
 
-.alert-message {
-  color: rgb(217, 119, 119);
-  font-size: 0.8rem;
 
-}
-
-.red-border {
-  border: 2px solid red;
-}
-
-.shorten-button {
-  background-color: var(--Cyan);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  text-wrap: nowrap;
-}
-.shorten-button:hover {
-  background-color: hsl(180, 58%, 71%);
-}
 
 @media screen and (max-width: 375px) {
-  .shorten-container {
+  .form-container {
     background-image: url(../images/bg-shorten-mobile.svg);
-    padding: 2rem;
+    padding: 1rem;
   }
 
   form {
