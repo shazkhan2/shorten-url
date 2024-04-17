@@ -8,7 +8,6 @@ export default function Shorten() {
   const [inputUrl, setInputUrl] = useState('');
   const [urlPairs, setUrlPairs] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
