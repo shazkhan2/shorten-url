@@ -1,52 +1,54 @@
-import React, { useState } from "react";
-import "./Shorten.css";
-import CopyToClipboardButton from "./CopyToClipboardButton";
+import React, { useState } from 'react';
+import './Shorten.css';
+import CopyToClipboardButton from './CopyToClipboardButton';
+
+const API_URL = 'http://localhost:3000/api/shorten';
 
 export default function Shorten() {
-  const [fullUrl, setFullUrl] = useState("");
+  const [inputUrl, setInputUrl] = useState('');
   const [urlPairs, setUrlPairs] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!fullUrl) {
-      setShowAlert(true); 
+    if (!inputUrl) {
+      setShowAlert(true);
       return;
     }
     setShowAlert(false);
 
-    let processedUrl = fullUrl.trim();
-    if (!processedUrl.startsWith("http://") && !processedUrl.startsWith("https://")) {
-      processedUrl = "https://" + processedUrl;
+    let processedUrl = inputUrl.trim();
+    if (!processedUrl.startsWith('http://') && !processedUrl.startsWith('https://')) {
+      processedUrl = 'https://' + processedUrl;
     }
 
     try {
       const formData = new URLSearchParams();
-      formData.append("url", processedUrl);
+      formData.append('url', processedUrl);
 
-      const response = await fetch("http://localhost:3000/api/shorten", {
-        method: "POST",
+      const response = await fetch(API_URL, {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: formData.toString(),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to shorten URL");
+        throw new Error('Failed to shorten URL');
       }
 
       const data = await response.json();
-      setUrlPairs([...urlPairs, { fullUrl, shortenedUrl: data.shortenedUrl }]);
-      setFullUrl(""); 
+      setUrlPairs([...urlPairs, { inputUrl, shortenedUrl: data.shortenedUrl }]);
+      setInputUrl('');
     } catch (error) {
-      console.error("Error:", error);
+      console.error('Error:', error);
     }
   };
 
   const handleChange = (e) => {
-    setFullUrl(e.target.value);
+    setInputUrl(e.target.value);
   };
 
   return (
@@ -56,7 +58,7 @@ export default function Shorten() {
           <input
             type="text"
             placeholder="Shorten a link here..."
-            value={fullUrl}
+            value={inputUrl}
             onChange={handleChange}
             className={`shorten-input ${showAlert ? 'red-border' : ''}`}
           />
@@ -71,7 +73,7 @@ export default function Shorten() {
           {urlPairs.map((pair, index) => (
             <div key={index} className="shortened-url">
               <CopyToClipboardButton
-                fullUrl={pair.fullUrl}
+                inputUrl={pair.inputUrl}
                 shortenedUrl={pair.shortenedUrl}
               />
             </div>
