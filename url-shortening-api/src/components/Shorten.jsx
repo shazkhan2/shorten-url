@@ -5,18 +5,16 @@ import CopyToClipboardButton from "./CopyToClipboardButton";
 export default function Shorten() {
   const [fullUrl, setFullUrl] = useState("");
   const [urlPairs, setUrlPairs] = useState([]);
-
-  const handleCopySuccess = () => {
-    console.log("URL copied successfully!"); 
-  };
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!fullUrl) {
-      alert("Please enter a valid URL!");
+      setShowAlert(true); 
       return;
     }
+    setShowAlert(false);
 
     let processedUrl = fullUrl.trim();
     if (!processedUrl.startsWith("http://") && !processedUrl.startsWith("https://")) {
@@ -52,30 +50,34 @@ export default function Shorten() {
   };
 
   return (
-    <section className="shorten-container">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Shorten a link here..."
-          value={fullUrl}
-          onChange={handleChange}
-          className="shorten-input"
-        />
-        <button type="submit" className="shorten-button">
-          Shorten it!
-        </button>
-      </form>
-      <div className="shortened-urls">
-        {urlPairs.map((pair, index) => (
-          <div key={index} className="shortened-url">
-            <CopyToClipboardButton
-              fullUrl={pair.fullUrl}
-              shortenedUrl={pair.shortenedUrl}
-              onSuccess={handleCopySuccess}
-            />
-          </div>
-        ))}
-      </div>
-    </section>
+    <>
+      <section className="form-container">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Shorten a link here..."
+            value={fullUrl}
+            onChange={handleChange}
+            className={`shorten-input ${showAlert ? 'red-border' : ''}`}
+          />
+          <button type="submit" className="shorten-button">
+            Shorten it!
+          </button>
+        </form>
+        {showAlert && <p className="alert-message">Please add a link</p>}
+      </section>
+      <section className="shortened-container">
+        <div className="shortened-urls">
+          {urlPairs.map((pair, index) => (
+            <div key={index} className="shortened-url">
+              <CopyToClipboardButton
+                fullUrl={pair.fullUrl}
+                shortenedUrl={pair.shortenedUrl}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

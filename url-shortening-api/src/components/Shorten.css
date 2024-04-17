@@ -1,7 +1,14 @@
-.shorten-container {
+.form-container {
   background-image: url(../images/bg-shorten-desktop.svg);
   background-color: var(--DarkViolet);
-  padding: 3rem;
+  margin-bottom: 0.5rem;
+}
+.shortened-container {
+  margin-top: 1rem;
+
+}
+.shortened-urls {
+  margin-top: 0.5rem;
 }
 
 form {
@@ -17,6 +24,14 @@ input {
   border: 1px solid #ccc;
   font-size: 1rem;
   margin-right: 1rem;
+}
+.alert-message {
+  color: hsl(0, 87%, 67%);
+  font-size: 0.8rem;
+}
+
+.red-border {
+  border: 2px solid hsl(0, 87%, 67%);
 }
 .shorten-button {
   background-color: var(--Cyan);
