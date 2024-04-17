@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./CopyToClipboardButton.css";
 
-export default function CopyToClipboardButton({ fullUrl, shortenedUrl }) {
+export default function CopyToClipboardButton({ inputUrl, shortenedUrl }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -19,7 +19,7 @@ export default function CopyToClipboardButton({ fullUrl, shortenedUrl }) {
 
   return (
     <div className="url-info">
-      <p className="full-url">{fullUrl}</p>
+      <p className="full-url">{inputUrl}</p>
       <p className="shortened-url">{shortenedUrl}</p>
       <button className={buttonClass} onClick={handleCopy}>
         {copied ? "Copied!" : "Copy"}
