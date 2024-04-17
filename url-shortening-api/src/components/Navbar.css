@@ -8,13 +8,13 @@
   
   .logo {
     height: 50px;
+    padding-right: 4rem;
   }
   .header-left-section ul,
   .header-right-section {
     display: none;
   }
   @media (min-width: 375px) {
-    /* Your styles here */
   
     .header-left-section {
       display: flex;
