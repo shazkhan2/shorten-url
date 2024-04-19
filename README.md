@@ -1,11 +1,15 @@
 # url-shortening-api
-![Skærmbillede 2024-04-17 231159](https://github.com/shazkhan2/url-shortening-api/assets/115549210/cfd2578f-32d6-406b-8262-e41f47d1415e)
+![Fullscreen](<Skærmbillede 2024-04-17 231054.png>) ![FUnctionality](<Skærmbillede 2024-04-19 111551.png>) ![Mobilescreen](<Skærmbillede 2024-04-19 111801.png>)
 
-![Skærmbillede 2024-04-17 231054](https://github.com/shazkhan2/url-shortening-api/assets/115549210/99c8456f-5026-4b3c-938a-dfce3bb357cd)
+<h1>Features</h1>
+<h2>Mitigation of CORS Restrictions:<h2> 
+Utilizes a custom backend (Node) server and API to circumvent CORS restrictions imposed by the third-party API.
+URL Shortening Functionality: The web application (React) sends requests to the API server, which then communicates with the public API to shorten URLs, implemented using node-fetch.
+ES6 Modules Support: Overcame compatibility issues with older NPM packages reliant on CommonJS by introducing support for ES6 modules. Notably, files are designated with the .mjs extension to signal the adoption of ES module syntax.
+Responsive UI Design: Dynamically adjusts UI components based on screen size, featuring a toggleable navigation bar.
 
-Lessons learned:
-1. Postman does not enforce Cors; Cors errors happen in browsers on the client side.
-2. Not all APIs are freely available. In case there are origin access controls, the workaround is to create a server that you can call, which in return will call the API.
-3. React and Node are constantly evolving so any unusual errors would require a good understanding and an optimal solution.
-4. There is a copy to clipboard library available in React.
-
+<h2>Lessons Learnt</h2>
+CORS Challenges: CORS errors predominantly manifest in browser environments, highlighting the necessity for server-side mitigation strategies.
+Access Control Workarounds: Understood the need for intermediary servers to access restricted APIs, offering insights into overcoming origin access controls.
+Adaptability in Development: Experienced the evolving nature of React and Node ecosystems, emphasizing the importance of troubleshooting skills and adaptable solutions for unforeseen errors.
+Clipboard Functionality: Integrated a React library for efficient clipboard operations.
