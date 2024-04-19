@@ -9,6 +9,10 @@ export default function Shorten() {
   const [urlPairs, setUrlPairs] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
 
+  const handleChange = (e) => {
+    setInputUrl(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -16,7 +20,6 @@ export default function Shorten() {
       setShowAlert(true);
       return;
     }
-    setShowAlert(false);
     setShowAlert(false);
 
     let processedUrl = inputUrl.trim();
@@ -48,9 +51,7 @@ export default function Shorten() {
     }
   };
 
-  const handleChange = (e) => {
-    setInputUrl(e.target.value);
-  };
+  
 
   return (
     <>
