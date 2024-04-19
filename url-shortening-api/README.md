@@ -1,34 +1,16 @@
-![Large screen](image-2.png)
-![Mobile view]!(image-1.png)
+<img width="382" alt="image" src="https://github.com/shazkhan2/url-shortening-api/assets/115549210/fbaf74b1-f516-417e-b5d0-13193da97391">
+<img width="286" alt="image" src="https://github.com/shazkhan2/url-shortening-api/assets/115549210/81ad1e04-2cff-4c6b-873b-f4c728378641">
+<img width="298" alt="image" src="https://github.com/shazkhan2/url-shortening-api/assets/115549210/94094646-de9e-4569-af59-4002b3e2384b">
 
-Lessons learned:
-1. Postman does not enforce Cors; Cors errors happen in browsers on the client side.
-2. Not all APIs are freely available. In case there are origin access controls, the workaround is to create a server that you can call, which in return will call the API.
-3. React and Node are constantly evolving so any unusual errors would require a good understanding and an optimal solution.
-4. There is a copy to clipboard library available in React.
+<h1>Features></h1>
 
-Plan B:
-If I couldnt make the given API work by the weekend, I shall instead find one that doesnt have any CORS restrictions and it can be called directly from the front end. Its better to start with building a skating board first, then a bicycle then a car and then an aeroplane, rather than start straight with an aeroplance and a year later you have nothing to show. 
+1. <h2>Mitigation of CORS Restrictions:</h2> Utilizes a custom backend server and API to circumvent CORS restrictions imposed by the third-party API. 
+2. <h2>URL Shortening Functionality:</h2> The web application sends requests to the API server, which then communicates with the public API to shorten URLs, implemented using node-fetch. 
+3. <h2>ES6 Modules Support: </h2> Overcame compatibility issues with older NPM packages reliant on CommonJS by introducing support for ES6 modules. Notably, files are designated with the .mjs extension to signal the adoption of ES module syntax.
+4. <h2>Responsive UI Design: </h2> Dynamically adjusts UI components based on screen size, featuring a toggleable navigation bar.
 
-Learning objectives for the future:
-1. Get comfortable with a design library, ideally Tailwind CSS.
-2. Get my code reviewed by a senior mentor to help me simplify it as much as possible.
-3. In unfamiliar situations, ask a mentor to show me a course of action early on rather than exhaust all the wrong options before I come to the right solution. 
-4. But nothing is more exciting than being stuck in a situation that you cant fathom how to get out of, only to then find a solution and feel elated. Keep coding, keep learning and I love what I do. 
-
-
-The project became challenging upon getting the error that access from my origin- the localhost- was blocked by CORS policy.
-So the first step was to see if I can call the API via postman by following their documentation: https://cleanuri.com/docs . Their documentation is not great, and I had to ask chatGPT what the  -d url=https%3A%2F%2Fgoogle.com%2F' flag in the curl command got translated into. It turns out it becomes a url-encoded-form-body
-curl -XPOST -d 'url=https%3A%2F%2Fgoogle.com%2F' 'https://cleanuri.com/api/v1/shorten'. I created a postman request where it works as seen in the picture.
-![Postman](image-3.png)
-Now that it works from Postman it means it should work from any application as well if I call the API the same way. I was calling it by using a json body instead of the url-encoded-form-body. This I thought was most likely the cause of my issues, but it was far from it.
-The API I was trying to access does not support CORS, and that it would require a back-end to work. Some initial search led me to consider using a proxy server but that was no good. Then a wise man suggested that:
-
-"Take a few steps back, you shouldn't need more than:
-Your web app makes a request to your API server
-Your API server makes a request to the public API you're using to shorten URLs (using node-fetch or similar)
-Your API responds with the shorter URL."
-
-I then went on to create the backend but was getting other errors to do with the NPM packages. They did not support CommonJS which is an older package specification, which uses require. What I had was instead a new ES6 modules package, which uses import. I then gave me js files the extension .mjs to tell node that this file should use the es module syntax.  and bingo, I got data returned from the API 
-
-
+<h1>Lessons Learned </h1>
+1. <h2>CORS Challenges: </h2> CORS errors predominantly manifest in browser environments, highlighting the necessity for server-side mitigation strategies.
+2. <h2>Access Control Workarounds: </h2>  Overcoming origin access controls need intermediary servers/ proxies to access restricted APIs.
+3. <h2>Adaptability in Development: <h/2> Due to the evolving nature of React and Node ecosystems, it is important to improve my troubleshooting skills and to find innovative olutions for unforeseen errors.
+4. <h2>Clipboard Functionality: </h2> Discovered that React library has a builtin clipboard functionality.
